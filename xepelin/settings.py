@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '2p69*@1-7&hkgsh158h3_2+%0ea(db
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['https://xepelin-test.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['xepelin-test.herokuapp.com']
 
 
 # Application definition
