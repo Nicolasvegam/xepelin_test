@@ -20,10 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '2p69*@1-7&hkgsh158h3_2+%0ea(db-^mfafq6or793r_(es&k'
+#SECRET_KEY = '2p69*@1-7&hkgsh158h3_2+%0ea(db-^mfafq6or793r_(es&k'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '2p69*@1-7&hkgsh158h3_2+%0ea(db-^mfafq6or793r_(es&k')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+#DEBUG = False
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
 ALLOWED_HOSTS = []
 
@@ -131,3 +133,9 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+import dj_database_url
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+
+DATABASES['default'].update(db_from_env)
